@@ -54,7 +54,7 @@ let game = () => {
     let computerScore = 0;
     
     for (let i = 0; i < 5; i++) {
-        result = playGame(getPlayerChoice("rock"), getComputerChoice());
+        result = playGame(getPlayerChoice(prompt()), getComputerChoice());
         console.log(result)
         if (result.includes("win")) {
             playerScore += 1;
@@ -77,7 +77,7 @@ let game = () => {
     console.log(end)
 }
 
-const computerSelection = getComputerChoice();
-const playerSelection = getPlayerChoice("rock");
+//const computerSelection = getComputerChoice();
+//const playerSelection = getPlayerChoice("rock");
 
 game();
