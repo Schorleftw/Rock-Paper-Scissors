@@ -67,17 +67,11 @@ let game = () => {
         }
     }
 
-    //console.log(playerScore)
-    //console.log(computerScore)
-
     let end = (playerScore > computerScore) ? `You won with ${playerScore} to ${computerScore}!` :
         (playerScore < computerScore) ? `You lost with ${playerScore} to ${computerScore}!` :
         `You tied with ${playerScore} to ${computerScore}!`;
     
     console.log(end)
 }
-
-//const computerSelection = getComputerChoice();
-//const playerSelection = getPlayerChoice("rock");
 
 game();
