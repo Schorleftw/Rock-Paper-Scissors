@@ -74,4 +74,4 @@ let game = () => {
     console.log(end)
 }
 
-game();
+//game();
