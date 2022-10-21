@@ -23,6 +23,7 @@ body {
     align-items: center;
     background-color: #222831;
     color: white;
+    font-size: 1.5em;
 }
 
 /* Middle general*/
@@ -39,6 +40,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-size: 1.5em;
 }
 
 .game .top-items {
@@ -53,6 +55,7 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    font-size: 1.5em;
 }
 
 /* .game .mid .player, .computer {
@@ -68,6 +71,7 @@ body {
     align-items: center;
 }
 
+/* Footer */
 
 .footer {
     height: 10%;
