@@ -1,3 +1,4 @@
+// Relevant for computer choice
 let random = () => {
     return Math.floor(Math.random() * 3);
 }
@@ -15,6 +16,8 @@ let getComputerChoice = () => {
     }
 }
 
+// get Player choice
+
 let getPlayerChoice = (playerSelection) => {
     playerSelection = playerSelection.toLowerCase();
     if (playerSelection === "rock" || playerSelection ===  "paper" || playerSelection ===  "scissors") {
@@ -25,7 +28,9 @@ let getPlayerChoice = (playerSelection) => {
     }
 }
 
-let playGame = (playerSelection, computerSelection) => {
+// Compare the Player Selection against the Computer Selection
+
+let compare = (playerSelection, computerSelection) => {
     if (playerSelection === "rock" && computerSelection === "paper") {
         return "You lose! Paper beats Rock"
     }
@@ -49,12 +54,14 @@ let playGame = (playerSelection, computerSelection) => {
     }
 }
 
+// Main function for playing the game
+
 let game = () => {
     let playerScore = 0;
     let computerScore = 0;
     
     for (let i = 0; i < 5; i++) {
-        result = playGame(getPlayerChoice(prompt()), getComputerChoice());
+        result = compare(getPlayerChoice(prompt()), getComputerChoice());
         console.log(result)
         if (result.includes("win")) {
             playerScore += 1;
