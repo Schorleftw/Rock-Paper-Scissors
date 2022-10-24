@@ -5,9 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock-Paper-Scissors</title>
-    <script src="main.js"></script>
+    <!-- The defer attributes prevents the execution of the js script before the DOM Content is loaded -->
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div class="header">
+        <h1>Rock Paper Scissors</h1>
+    </div>
+
+    <div class="game">
+        <div class="top">
+            <h2 class="top-items">Choose your weapon</h2>
+            <h3 class="top-items">First to score 5 times wins!</h3>
+            <h4 class="top-items" id="prompt"></h4>
+        </div>
+
+        <div class="mid">
+            <div class="player">
+                <p>Player score</p>
+                <p class="p-score">0</p>
+            </div>
+            <div class="computer">
+                <p>Computer score</p>
+                <p class="c-score">0</p>
+            </div>
+        </div>
+
+        <div class="bottom">
+            <button type="button" id="rock" class="bot-items">Rock</button>
+            <button type="button" id="paper" class="bot-items">Paper</button>
+            <button type="button" id="scissors" class="bot-items">Scissors</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Copyright &copy Schorleftw</p>
+    </div>
 </body>
 </html>

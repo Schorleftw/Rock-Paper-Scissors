@@ -1,3 +1,14 @@
+// Make Buttons accessible and declare variables
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissors = document.getElementById("scissors");
+let playerScore = 0;
+let computerScore = 0;
+let Pcounter = document.querySelector(".p-score");
+let Ccounter = document.querySelector(".c-score");
+let prompt = document.getElementById("prompt");
+
+// Relevant for computer choice
 let random = () => {
     return Math.floor(Math.random() * 3);
 }
@@ -15,17 +26,9 @@ let getComputerChoice = () => {
     }
 }
 
-let getPlayerChoice = (playerSelection) => {
-    playerSelection = playerSelection.toLowerCase();
-    if (playerSelection === "rock" || playerSelection ===  "paper" || playerSelection ===  "scissors") {
-        return playerSelection;
-    }
-    else {
-        console.log("Nope")
-    }
-}
+// Compare the Player Selection against the Computer Selection
 
-let playGame = (playerSelection, computerSelection) => {
+let compare = (playerSelection, computerSelection) => {
     if (playerSelection === "rock" && computerSelection === "paper") {
         return "You lose! Paper beats Rock"
     }
@@ -44,34 +47,44 @@ let playGame = (playerSelection, computerSelection) => {
     else if (computerSelection === "scissors" && playerSelection === "rock") {
         return "You win! Rock beats Scissors"
     }
-    else {
+    else if (playerSelection === computerSelection) {
         return "Thats a tie!"
     }
 }
 
-let game = () => {
-    let playerScore = 0;
-    let computerScore = 0;
-    
-    for (let i = 0; i < 5; i++) {
-        result = playGame(getPlayerChoice(prompt()), getComputerChoice());
-        console.log(result)
-        if (result.includes("win")) {
-            playerScore += 1;
-        }
-        else if (result.includes("lose")) {
-            computerScore += 1;
-        }
-        else if (result.includes("tie")) {
-            //do nothing
-        }
+// Main function for playing the game
+
+window.addEventListener("click", function game(e) {
+    let choice;
+    let result;
+
+    if (e.target.innerHTML === "Rock" || e.target.innerHTML === "Paper" || e.target.innerHTML === "Scissors") {
+        choice = e.target.innerHTML;
+        choice = choice.toLowerCase();
+        result = compare(choice, getComputerChoice());
+    }
+    else {
+        //do nothing
     }
 
-    let end = (playerScore > computerScore) ? `You won with ${playerScore} to ${computerScore}!` :
-        (playerScore < computerScore) ? `You lost with ${playerScore} to ${computerScore}!` :
-        `You tied with ${playerScore} to ${computerScore}!`;
-    
-    console.log(end)
-}
+    if (result !== undefined && result.includes("win")) {
+        playerScore += 1;
+        Pcounter.innerHTML++;
+        prompt.innerHTML = "One point for you!"
+    }
+    else if (result !== undefined && result.includes("lose")) {
+        computerScore += 1;
+        Ccounter.innerHTML++;
+        prompt.innerHTML = "Yikes"
+    }
+    else if (result !== undefined && result.includes("tie")) {
+        prompt.innerHTML = "Thats a tie!"
+    }
 
-game();
+    if (playerScore === 5) {
+        prompt.innerHTML = "You did it! You won!"
+    }
+    else if (computerScore === 5) {
+        prompt.innerHTML = "The computer defeated you!"
+    }
+});
