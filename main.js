@@ -1,9 +1,12 @@
-// Make Buttons accessible
+// Make Buttons accessible and declare variables
 const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
 const scissors = document.getElementById("scissors");
 let playerScore = 0;
 let computerScore = 0;
+let Pcounter = document.querySelector(".p-score");
+let Ccounter = document.querySelector(".c-score");
+let prompt = document.getElementById("prompt");
 
 // Relevant for computer choice
 let random = () => {
@@ -20,18 +23,6 @@ let getComputerChoice = () => {
             return "paper";
         case 2:
             return "scissors";
-    }
-}
-
-// get Player choice
-
-let getPlayerChoice = (playerSelection) => {
-    playerSelection = playerSelection.toLowerCase();
-    if (playerSelection === "rock" || playerSelection ===  "paper" || playerSelection ===  "scissors") {
-        return playerSelection;
-    }
-    else {
-        console.log("Nope")
     }
 }
 
@@ -63,10 +54,9 @@ let compare = (playerSelection, computerSelection) => {
 
 // Main function for playing the game
 
-window.addEventListener("click", function getPlayerChoice(e) {
+window.addEventListener("click", function game(e) {
     let choice;
     let result;
-
 
     if (e.target.innerHTML === "Rock" || e.target.innerHTML === "Paper" || e.target.innerHTML === "Scissors") {
         choice = e.target.innerHTML;
@@ -79,60 +69,22 @@ window.addEventListener("click", function getPlayerChoice(e) {
 
     if (result !== undefined && result.includes("win")) {
         playerScore += 1;
+        Pcounter.innerHTML++;
+        prompt.innerHTML = "One point for you!"
     }
     else if (result !== undefined && result.includes("lose")) {
         computerScore += 1;
+        Ccounter.innerHTML++;
+        prompt.innerHTML = "Yikes"
     }
     else if (result !== undefined && result.includes("tie")) {
-        //do nothing
+        prompt.innerHTML = "Thats a tie!"
     }
-    else if (playerScore === 5 || computerScore === 5) {
-        console.log(end)
-    }
-
-    console.log("Player score" + playerScore);
-    console.log("Computer score" + computerScore);
 
     if (playerScore === 5) {
-        console.log("You did it! You won")
+        prompt.innerHTML = "You did it! You won!"
     }
     else if (computerScore === 5) {
-        console.log("The computer defeated you!")
+        prompt.innerHTML = "The computer defeated you!"
     }
 });
-
-
-
-// rock.addEventListener("click", function game() {
-//     //get inner HTML and place it in variable
-//     //get computer choice
-//     //compare computer and player choice and set score
-//     //after 5 points declare winner
-// });
-
-// let game = () => {
-//     let playerScore = 0;
-//     let computerScore = 0;
-
-//     // for (let i = 0; i < 5; i++) {
-//     //     result = compare(getPlayerChoice(prompt()), getComputerChoice());
-//     //     console.log(result)
-//     //     if (result.includes("win")) {
-//     //         playerScore += 1;
-//     //     }
-//     //     else if (result.includes("lose")) {
-//     //         computerScore += 1;
-//     //     }
-//     //     else if (result.includes("tie")) {
-//     //         //do nothing
-//     //     }
-//     // }
-
-//     // let end = (playerScore > computerScore) ? `You won with ${playerScore} to ${computerScore}!` :
-//     //     (playerScore < computerScore) ? `You lost with ${playerScore} to ${computerScore}!` :
-//     //     `You tied with ${playerScore} to ${computerScore}!`;
-    
-//     // console.log(end)
-// }
-
-//game();
