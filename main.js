@@ -61,31 +61,33 @@ window.addEventListener("click", function game(e) {
     if (e.target.className === "Rock" || e.target.className === "Paper" || e.target.className === "Scissors") {
         choice = e.target.className;
         choice = choice.toLowerCase();
-        console.log(choice)
-        result = compare(choice, getComputerChoice());
+        computerChoice = getComputerChoice();
+        console.log(computerChoice);
+        result = compare(choice, computerChoice);
     }
     else {
         //do nothing
     }
 
     if (result !== undefined && result.includes("win")) {
-        playerScore -= 1;
-        Pcounter.innerHTML = `Your Lives: ${playerScore}`
-        prompt.innerHTML = "One point for you!"
+        computerScore -= 1;
+        Ccounter.innerHTML = `Enemy Lives: ${computerScore}`;
+        prompt.innerHTML = "You win this round!";
     }
     else if (result !== undefined && result.includes("lose")) {
-        computerScore -= 1;
-        Ccounter.innerHTML = `Enemy Lives: ${computerScore}`
-        prompt.innerHTML = "Yikes"
+        playerScore -= 1;
+        Pcounter.innerHTML = `Your Lives: ${playerScore}`;
+        prompt.innerHTML = "You lose one live!";
+        // document.getElementById("skull").src = `images/${}`
     }
     else if (result !== undefined && result.includes("tie")) {
-        prompt.innerHTML = "Thats a tie!"
+        prompt.innerHTML = "Thats a tie!";
     }
 
     if (playerScore === 0) {
-        prompt.innerHTML = "The computer defeated you!"
+        prompt.innerHTML = "The computer defeated you!";
     }
     else if (computerScore === 0) {
-        prompt.innerHTML = "You did it! You won!"
+        prompt.innerHTML = "You did it! You won!";
     }
 });
