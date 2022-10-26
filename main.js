@@ -65,7 +65,6 @@ window.addEventListener("click", function game(e) {
         choice = e.target.className;
         choice = choice.toLowerCase();
         computerChoice = getComputerChoice();
-        console.log(computerChoice);
         result = compare(choice, computerChoice);
     }
     else {
