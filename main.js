@@ -1,12 +1,15 @@
 // Make Buttons accessible and declare variables
-const rock = document.getElementById("rock");
-const paper = document.getElementById("paper");
-const scissors = document.getElementById("scissors");
-let playerScore = 0;
-let computerScore = 0;
+const ghost = document.getElementById("ghost");
+const pumpkins = document.getElementById("pumpkins");
+const scarecrow = document.getElementById("scarecrow");
+let playerScore = 5;
+let computerScore = 5;
+let currentRound = 0;
 let Pcounter = document.querySelector(".p-score");
 let Ccounter = document.querySelector(".c-score");
 let prompt = document.getElementById("prompt");
+let restart = document.getElementById("restart");
+let round = document.getElementById("round");
 
 // Relevant for computer choice
 let random = () => {
@@ -18,33 +21,33 @@ let getComputerChoice = () => {
     
     switch(choice) {
         case 0:
-            return "rock";
+            return "ghost";
         case 1:
-            return "paper";
+            return "pumpkins";
         case 2:
-            return "scissors";
+            return "scarecrow";
     }
 }
 
 // Compare the Player Selection against the Computer Selection
 
 let compare = (playerSelection, computerSelection) => {
-    if (playerSelection === "rock" && computerSelection === "paper") {
+    if (playerSelection === "ghost" && computerSelection === "pumpkins") {
         return "You lose! Paper beats Rock"
     }
-    else if (playerSelection === "paper" && computerSelection === "scissors") {
+    else if (playerSelection === "pumpkins" && computerSelection === "scarecrow") {
         return "You lose! Scisors beats Paper"
     }
-    else if (playerSelection === "scissors" && computerSelection === "rock") {
+    else if (playerSelection === "scarecrow" && computerSelection === "ghost") {
         return "You lose! Rock beats Scissors"
     }
-    else if (computerSelection === "rock" && playerSelection === "paper") {
+    else if (computerSelection === "ghost" && playerSelection === "pumpkins") {
         return "You win! Paper beats Rock"
     }
-    else if (computerSelection === "paper" && playerSelection === "scissors") {
+    else if (computerSelection === "pumpkins" && playerSelection === "scarecrow") {
         return "You win! Scisors beats Paper"
     }
-    else if (computerSelection === "scissors" && playerSelection === "rock") {
+    else if (computerSelection === "scarecrow" && playerSelection === "ghost") {
         return "You win! Rock beats Scissors"
     }
     else if (playerSelection === computerSelection) {
@@ -58,33 +61,51 @@ window.addEventListener("click", function game(e) {
     let choice;
     let result;
 
-    if (e.target.innerHTML === "Rock" || e.target.innerHTML === "Paper" || e.target.innerHTML === "Scissors") {
-        choice = e.target.innerHTML;
+    if (e.target.className === "Ghost" || e.target.className === "Pumpkins" || e.target.className === "Scarecrow") {
+        choice = e.target.className;
         choice = choice.toLowerCase();
-        result = compare(choice, getComputerChoice());
+        computerChoice = getComputerChoice();
+        console.log(computerChoice);
+        result = compare(choice, computerChoice);
     }
     else {
         //do nothing
     }
 
     if (result !== undefined && result.includes("win")) {
-        playerScore += 1;
-        Pcounter.innerHTML++;
-        prompt.innerHTML = "One point for you!"
+        computerScore -= 1;
+        Ccounter.innerHTML = `Enemy Lives: ${computerScore}`;
+        prompt.innerHTML = "You win this round!";
+        document.getElementById("skull").src = `images/${computerChoice}` + ".png";
+        currentRound++;
+        round.innerHTML = `Round: ${currentRound}`;
     }
     else if (result !== undefined && result.includes("lose")) {
-        computerScore += 1;
-        Ccounter.innerHTML++;
-        prompt.innerHTML = "Yikes"
+        playerScore -= 1;
+        Pcounter.innerHTML = `Your Lives: ${playerScore}`;
+        prompt.innerHTML = "You lose one live!";
+        document.getElementById("skull").src = `images/${computerChoice}` + ".png";
+        currentRound++;
+        round.innerHTML = `Round: ${currentRound}`;
     }
     else if (result !== undefined && result.includes("tie")) {
-        prompt.innerHTML = "Thats a tie!"
+        prompt.innerHTML = "Thats a tie!";
+        document.getElementById("skull").src = `images/${computerChoice}` + ".png";
+        currentRound++;
+        round.innerHTML = `Round: ${currentRound}`;
     }
 
-    if (playerScore === 5) {
-        prompt.innerHTML = "You did it! You won!"
+    if (playerScore === 0) {
+        prompt.innerHTML = "The computer defeated you!";
+        document.getElementById("restart").removeAttribute("hidden");
     }
-    else if (computerScore === 5) {
-        prompt.innerHTML = "The computer defeated you!"
+    else if (computerScore === 0) {
+        prompt.innerHTML = "You did it! You won!";
+        document.getElementById("restart").removeAttribute("hidden");
     }
+});
+
+
+restart.addEventListener("click", () => {
+    window.location.reload();
 });
