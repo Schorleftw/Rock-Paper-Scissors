@@ -88,3 +88,7 @@ window.addEventListener("click", function game(e) {
         prompt.innerHTML = "The computer defeated you!"
     }
 });
+
+rock.addEventListener("click", function lul(e) {
+    console.log("Nice");
+})
