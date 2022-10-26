@@ -9,6 +9,7 @@
 /* Set height to 100% to limit view to one page -> no scrolling */
 html, body {
     height: 100%;
+    background: linear-gradient(90deg, hsl(104, 28%, 40%) 0%, hsl(58, 28%, 40%) 100%);
 }
 
 body {
@@ -21,15 +22,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #222831;
     color: white;
     font-size: 1.5em;
 }
 
 /* Middle general*/
 .game {
-    height: 70%;
-    background: #393e46;
+    height: 75%;
     color: white;
 }
 
@@ -58,9 +57,13 @@ body {
     font-size: 1.5em;
 }
 
-/* .game .mid .player, .computer {
-    flex-grow: 1;
-} */
+.game .mid .results {
+    display: flex;
+}
+
+.game .mid .computer {
+    display: flex;
+}
 
 /* Middle bottom */
 
@@ -74,10 +77,9 @@ body {
 /* Footer */
 
 .footer {
-    height: 10%;
+    height: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #393e46;
     color: white;
 }
