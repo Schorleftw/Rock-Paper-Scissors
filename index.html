@@ -11,33 +11,50 @@
 </head>
 <body>
     <div class="header">
-        <h1>Rock Paper Scissors</h1>
+        <h1 class="header-item">Ghost Pumpkin Scarecrow</h1>
+        <p class="header-item">3 spooky choices | 5 Lives</p>
+        <p class="header-item">Ghost beats Scarecrow | Pumpkin beats Ghost | Scarecrow beats Pumpkin</p>
     </div>
+
 
     <div class="game">
         <div class="top">
-            <h2 class="top-items">Choose your weapon</h2>
-            <h3 class="top-items">First to score 5 times wins!</h3>
-            <h4 class="top-items" id="prompt"></h4>
+            <!-- <img src="images/ghost.jpg"> -->
+            <button type="button" id="ghost" class="top-items">
+                <img class="Ghost" src="images/ghost.png" alt="Ghost" height="200" width="200">
+            </button>
+            <button type="button" id="pumpkins" class="top-items">
+                <img class="Pumpkins" src="images/pumpkins.png" alt="Pumpkins" height="200" width="200">
+            </button>
+            <button type="button" id="scarecrow" class="top-items">
+                <img class="Scarecrow" src="images/scarecrow.png" alt="Scarecrow" height="200" width="200">
+            </button>
         </div>
+
+        <br>
 
         <div class="mid">
-            <div class="player">
-                <p>Player score</p>
-                <p class="p-score">0</p>
-            </div>
             <div class="computer">
-                <p>Computer score</p>
-                <p class="c-score">0</p>
+                <p>Enemy choice </p>
+                <img id="skull" src="images/skull.png" alt="" height="150" width="150">
+                <p class="choice"></p>
+            </div>
+            <div class="results">
+                <p id="round">Round: 0</p>
+                <p class="p-score">Your Lives: 5</p>
+                <p class="c-score">Enemy Lives: 5</p>
             </div>
         </div>
 
+        <br>
+
         <div class="bottom">
-            <button type="button" id="rock" class="bot-items">Rock</button>
-            <button type="button" id="paper" class="bot-items">Paper</button>
-            <button type="button" id="scissors" class="bot-items">Scissors</button>
+            <h1 id="prompt"></h4>
+            <button id="restart" type="button" hidden >Play Again!</button>
         </div>
     </div>
+
+    <br>
 
     <div class="footer">
         <p>Copyright &copy Schorleftw</p>
