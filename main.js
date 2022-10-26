@@ -2,8 +2,8 @@
 const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
 const scissors = document.getElementById("scissors");
-let playerScore = 0;
-let computerScore = 0;
+let playerScore = 5;
+let computerScore = 5;
 let Pcounter = document.querySelector(".p-score");
 let Ccounter = document.querySelector(".c-score");
 let prompt = document.getElementById("prompt");
@@ -58,9 +58,10 @@ window.addEventListener("click", function game(e) {
     let choice;
     let result;
 
-    if (e.target.innerHTML === "Rock" || e.target.innerHTML === "Paper" || e.target.innerHTML === "Scissors") {
-        choice = e.target.innerHTML;
+    if (e.target.className === "Rock" || e.target.className === "Paper" || e.target.className === "Scissors") {
+        choice = e.target.className;
         choice = choice.toLowerCase();
+        console.log(choice)
         result = compare(choice, getComputerChoice());
     }
     else {
@@ -68,27 +69,23 @@ window.addEventListener("click", function game(e) {
     }
 
     if (result !== undefined && result.includes("win")) {
-        playerScore += 1;
-        Pcounter.innerHTML++;
+        playerScore -= 1;
+        Pcounter.innerHTML = `Your Lives: ${playerScore}`
         prompt.innerHTML = "One point for you!"
     }
     else if (result !== undefined && result.includes("lose")) {
-        computerScore += 1;
-        Ccounter.innerHTML++;
+        computerScore -= 1;
+        Ccounter.innerHTML = `Enemy Lives: ${computerScore}`
         prompt.innerHTML = "Yikes"
     }
     else if (result !== undefined && result.includes("tie")) {
         prompt.innerHTML = "Thats a tie!"
     }
 
-    if (playerScore === 5) {
-        prompt.innerHTML = "You did it! You won!"
-    }
-    else if (computerScore === 5) {
+    if (playerScore === 0) {
         prompt.innerHTML = "The computer defeated you!"
     }
+    else if (computerScore === 0) {
+        prompt.innerHTML = "You did it! You won!"
+    }
 });
-
-rock.addEventListener("click", function lul(e) {
-    console.log("Nice");
-})
